@@ -1,0 +1,535 @@
+object Form_VAMix: TForm_VAMix
+  Left = 978
+  Height = 643
+  Top = 397
+  Width = 851
+  AllowDropFiles = True
+  Caption = '视频音频混流'
+  ClientHeight = 613
+  ClientWidth = 851
+  Color = clForm
+  DesignTimePPI = 144
+  Menu = MainMenu
+  OnCreate = FormCreate
+  OnDropFiles = FormDropFiles
+  Position = poScreenCenter
+  LCLVersion = '1.8.4.0'
+  object Panel_Operation: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 20
+    Height = 66
+    Top = 527
+    Width = 811
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Left = 20
+    BorderSpacing.Right = 20
+    BorderSpacing.Bottom = 20
+    BevelWidth = 2
+    BorderWidth = 2
+    ClientHeight = 66
+    ClientWidth = 811
+    Color = clForm
+    ParentColor = False
+    TabOrder = 0
+    object Button_Run: TButton
+      AnchorSideTop.Control = Panel_Operation
+      AnchorSideRight.Control = Panel_Operation
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Panel_Operation
+      AnchorSideBottom.Side = asrBottom
+      Left = 691
+      Height = 38
+      Top = 14
+      Width = 96
+      Anchors = [akTop, akRight, akBottom]
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 20
+      BorderSpacing.Bottom = 10
+      Caption = '执行'
+      OnClick = Button_RunClick
+      TabOrder = 0
+    end
+  end
+  object Panel_Video: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 20
+    Height = 150
+    Top = 20
+    Width = 811
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 20
+    BorderSpacing.Top = 20
+    BorderSpacing.Right = 20
+    BevelWidth = 2
+    ClientHeight = 150
+    ClientWidth = 811
+    TabOrder = 1
+    OnClick = Panel_VideoClick
+    object Panel_VideoTimeline: TPanel
+      AnchorSideLeft.Control = Image_VideoCover
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = FloatSpinEdit_VideoSpeed
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = Panel_Video
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Image_VideoCover
+      AnchorSideBottom.Side = asrBottom
+      Left = 215
+      Height = 54
+      Top = 84
+      Width = 584
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 20
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BevelOuter = bvNone
+      Color = clForm
+      ParentColor = False
+      TabOrder = 0
+    end
+    object Image_VideoCover: TImage
+      AnchorSideLeft.Control = Label_Video
+      AnchorSideTop.Control = Label_Video
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = Panel_Video
+      AnchorSideBottom.Side = asrBottom
+      Left = 12
+      Height = 92
+      Top = 46
+      Width = 183
+      Anchors = [akTop, akLeft, akBottom]
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 10
+      OnClick = Image_VideoCoverClick
+    end
+    object Label_Video: TLabel
+      AnchorSideLeft.Control = Panel_Video
+      AnchorSideTop.Control = Panel_Video
+      Left = 12
+      Height = 24
+      Top = 12
+      Width = 72
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      Caption = '视频轨：'
+      ParentColor = False
+      OnClick = Label_VideoClick
+    end
+    object CheckBox_VideoMute: TCheckBox
+      AnchorSideLeft.Control = FloatSpinEdit_VideoSpeed
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_VideoSpeed
+      AnchorSideTop.Side = asrCenter
+      Left = 421
+      Height = 28
+      Top = 44
+      Width = 100
+      BorderSpacing.Left = 20
+      Caption = '视频静音'
+      TabOrder = 1
+    end
+    object FloatSpinEdit_VideoSpeed: TFloatSpinEdit
+      AnchorSideLeft.Control = Label_VideoSpeed
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_VideoSpeed
+      AnchorSideTop.Side = asrCenter
+      Left = 305
+      Height = 32
+      Top = 42
+      Width = 96
+      Increment = 0.01
+      MaxValue = 10
+      MinValue = 0.1
+      OnChange = FloatSpinEdit_Change
+      TabOrder = 2
+      Value = 1
+    end
+    object Label_VideoSpeed: TLabel
+      AnchorSideLeft.Control = Image_VideoCover
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Image_VideoCover
+      Left = 215
+      Height = 24
+      Top = 46
+      Width = 90
+      BorderSpacing.Left = 20
+      Caption = '视频速度：'
+      ParentColor = False
+    end
+    object Label_VideoPath: TLabel
+      AnchorSideLeft.Control = Label_Video
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_Video
+      AnchorSideTop.Side = asrCenter
+      Left = 114
+      Height = 24
+      Top = 12
+      Width = 8
+      BorderSpacing.Left = 30
+      Caption = '*'
+      ParentColor = False
+      OnClick = Label_VideoPathClick
+    end
+  end
+  object Panel_Audio: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Panel_Video
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 20
+    Height = 150
+    Top = 190
+    Width = 811
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 20
+    BorderSpacing.Top = 20
+    BorderSpacing.Right = 20
+    BevelWidth = 2
+    ClientHeight = 150
+    ClientWidth = 811
+    TabOrder = 2
+    OnClick = Panel_AudioClick
+    object Panel_AudioTimeline: TPanel
+      AnchorSideLeft.Control = Image_AudioCover
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = FloatSpinEdit_AudioSpeed
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = Panel_Audio
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Image_AudioCover
+      AnchorSideBottom.Side = asrBottom
+      Left = 215
+      Height = 54
+      Top = 84
+      Width = 584
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 20
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BevelOuter = bvNone
+      Color = clForm
+      ParentColor = False
+      TabOrder = 0
+    end
+    object FloatSpinEdit_AudioSpeed: TFloatSpinEdit
+      AnchorSideLeft.Control = Label_AudioSpeed
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_AudioSpeed
+      AnchorSideTop.Side = asrCenter
+      Left = 305
+      Height = 32
+      Top = 42
+      Width = 96
+      Increment = 0.01
+      MaxValue = 10
+      MinValue = 0.1
+      OnChange = FloatSpinEdit_Change
+      TabOrder = 1
+      Value = 1
+    end
+    object Label_AudioSpeed: TLabel
+      AnchorSideLeft.Control = Image_AudioCover
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Image_AudioCover
+      Left = 215
+      Height = 24
+      Top = 46
+      Width = 90
+      BorderSpacing.Left = 20
+      Caption = '音频速度：'
+      ParentColor = False
+    end
+    object Image_AudioCover: TImage
+      AnchorSideLeft.Control = Label_Audio
+      AnchorSideTop.Control = Label_Audio
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = Panel_Audio
+      AnchorSideBottom.Side = asrBottom
+      Left = 12
+      Height = 92
+      Top = 46
+      Width = 183
+      Anchors = [akTop, akLeft, akBottom]
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 10
+      OnClick = Image_AudioCoverClick
+    end
+    object Label_Audio: TLabel
+      AnchorSideLeft.Control = Panel_Audio
+      AnchorSideTop.Control = Panel_Audio
+      Left = 12
+      Height = 24
+      Top = 12
+      Width = 72
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      Caption = '音频轨：'
+      ParentColor = False
+      OnClick = Label_AudioClick
+    end
+    object Label_AudioPath: TLabel
+      AnchorSideLeft.Control = Label_Audio
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_Audio
+      AnchorSideTop.Side = asrCenter
+      Left = 114
+      Height = 24
+      Top = 12
+      Width = 8
+      BorderSpacing.Left = 30
+      Caption = '*'
+      ParentColor = False
+      OnClick = Label_AudioPathClick
+    end
+    object Label_DeltaTime: TLabel
+      AnchorSideLeft.Control = FloatSpinEdit_AudioSpeed
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_AudioSpeed
+      AnchorSideTop.Side = asrCenter
+      Left = 421
+      Height = 24
+      Top = 46
+      Width = 90
+      BorderSpacing.Left = 20
+      Caption = '音频时差：'
+      ParentColor = False
+    end
+    object SpinEdit_DeltaSec: TSpinEdit
+      AnchorSideLeft.Control = Button_DeltaTimeSign
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_DeltaTime
+      AnchorSideTop.Side = asrCenter
+      Left = 556
+      Height = 32
+      Top = 42
+      Width = 72
+      BorderSpacing.Left = 10
+      MaxValue = 300
+      OnChange = FloatSpinEdit_Change
+      TabOrder = 2
+    end
+    object Label_DeltaTime_Sec: TLabel
+      AnchorSideLeft.Control = SpinEdit_DeltaSec
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_DeltaTime
+      AnchorSideTop.Side = asrCenter
+      Left = 628
+      Height = 24
+      Top = 46
+      Width = 18
+      Caption = '秒'
+      ParentColor = False
+    end
+    object SpinEdit_DeltaMS: TSpinEdit
+      AnchorSideLeft.Control = Label_DeltaTime_Sec
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_DeltaTime
+      AnchorSideTop.Side = asrCenter
+      Left = 656
+      Height = 32
+      Top = 42
+      Width = 72
+      BorderSpacing.Left = 10
+      MaxValue = 999
+      OnChange = FloatSpinEdit_Change
+      TabOrder = 3
+    end
+    object Label_DeltaTime_MS: TLabel
+      AnchorSideLeft.Control = SpinEdit_DeltaMS
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_DeltaTime
+      AnchorSideTop.Side = asrCenter
+      Left = 728
+      Height = 24
+      Top = 46
+      Width = 36
+      Caption = '毫秒'
+      ParentColor = False
+    end
+    object Button_DeltaTimeSign: TButton
+      AnchorSideLeft.Control = Label_DeltaTime
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = FloatSpinEdit_AudioSpeed
+      AnchorSideBottom.Control = FloatSpinEdit_AudioSpeed
+      AnchorSideBottom.Side = asrBottom
+      Left = 511
+      Height = 32
+      Top = 42
+      Width = 35
+      Anchors = [akTop, akLeft, akBottom]
+      Caption = '+'
+      OnClick = Button_DeltaTimeSignClick
+      TabOrder = 4
+    end
+  end
+  object Panel_Subtitle: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Panel_Audio
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 20
+    Height = 150
+    Top = 360
+    Width = 811
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 20
+    BorderSpacing.Top = 20
+    BorderSpacing.Right = 20
+    BevelWidth = 2
+    ClientHeight = 150
+    ClientWidth = 811
+    TabOrder = 3
+    object Label_Subtitle: TLabel
+      AnchorSideLeft.Control = Panel_Subtitle
+      AnchorSideTop.Control = Panel_Subtitle
+      Left = 12
+      Height = 24
+      Top = 12
+      Width = 72
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      Caption = '字幕轨：'
+      ParentColor = False
+    end
+    object Panel_SubtitleTimeline: TPanel
+      AnchorSideLeft.Control = Memo_SubtitleShow
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Button_SubtitleOption
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = Panel_Subtitle
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Memo_SubtitleShow
+      AnchorSideBottom.Side = asrBottom
+      Left = 215
+      Height = 54
+      Top = 84
+      Width = 584
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 20
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BevelOuter = bvNone
+      Color = clForm
+      ParentColor = False
+      TabOrder = 0
+    end
+    object Label_SubtitleSize: TLabel
+      AnchorSideLeft.Side = asrBottom
+      Left = 215
+      Height = 24
+      Top = 46
+      Width = 90
+      BorderSpacing.Left = 20
+      Caption = '字体设置：'
+      ParentColor = False
+    end
+    object Button_SubtitleOption: TButton
+      AnchorSideLeft.Control = Panel_SubtitleColor
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_SubtitleSize
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Panel_Subtitle
+      AnchorSideRight.Side = asrBottom
+      Left = 419
+      Height = 32
+      Top = 42
+      Width = 370
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 30
+      BorderSpacing.Right = 20
+      Caption = '点此设置字体'
+      OnClick = Button_SubtitleOptionClick
+      TabOrder = 1
+    end
+    object Panel_SubtitleColor: TPanel
+      AnchorSideLeft.Control = Label_SubtitleSize
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_SubtitleSize
+      AnchorSideTop.Side = asrCenter
+      Left = 325
+      Height = 16
+      Top = 50
+      Width = 64
+      BorderSpacing.Left = 20
+      Caption = '颜色展示'
+      TabOrder = 2
+    end
+    object Memo_SubtitleShow: TMemo
+      AnchorSideLeft.Control = Label_Subtitle
+      AnchorSideTop.Control = Label_Subtitle
+      AnchorSideTop.Side = asrBottom
+      AnchorSideBottom.Control = Panel_Subtitle
+      AnchorSideBottom.Side = asrBottom
+      Left = 12
+      Height = 92
+      Top = 46
+      Width = 183
+      Anchors = [akTop, akLeft, akBottom]
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 10
+      TabOrder = 3
+    end
+    object Button_CommitSubtitle: TButton
+      AnchorSideLeft.Control = Label_Subtitle
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_Subtitle
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = Memo_SubtitleShow
+      AnchorSideRight.Side = asrBottom
+      Left = 114
+      Height = 27
+      Top = 11
+      Width = 81
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 30
+      Caption = '提交片段'
+      OnClick = Button_CommitSubtitleClick
+      TabOrder = 4
+    end
+  end
+  object MainMenu: TMainMenu
+    OwnerDraw = True
+    left = 56
+    top = 456
+    object MenuItem_Import: TMenuItem
+      Caption = '导入'
+      object MenuItem_ImportVideo: TMenuItem
+        Caption = '导入视频'
+        OnClick = MenuItem_ImportVideoClick
+      end
+      object MenuItem_ImportAudio: TMenuItem
+        Caption = '导入音频'
+        OnClick = MenuItem_ImportAudioClick
+      end
+    end
+    object MenuItem_Export: TMenuItem
+      Caption = '导出'
+      object MenuItem_Run: TMenuItem
+        Caption = '导出视频'
+        OnClick = MenuItem_RunClick
+      end
+    end
+  end
+  object OpenDialog: TOpenDialog
+    Title = '导入'
+    Filter = '所有文件(*.*)|*.*|MPEG-4文件(*.mp4)|*.mp4'
+    Options = [ofFileMustExist, ofNoLongNames, ofEnableSizing]
+    left = 144
+    top = 456
+  end
+  object FontDialog: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    left = 240
+    top = 456
+  end
+end

@@ -1,0 +1,10 @@
+/lib
+/backup
+*.exe
+*.bak
+*.tmp
+*.zip
+*.mp4
+*.ts
+*.srt
+*.bat
